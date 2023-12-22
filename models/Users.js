@@ -50,10 +50,5 @@ const User = sequelize.define(
     timestamps: true,
   }
 );
-// User.hasMany(Post, { foreignKey: "userId" });
-
-// User.hasMany(Post, { foreignKey: "userId" }); // A user can have multiple posts
-// User.hasMany(Comment, { foreignKey: "userId" }); // A user can have multiple comments
-// User.sync();
 
 module.exports = User;

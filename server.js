@@ -7,7 +7,7 @@ const auth = require("./routes/auth.js");
 
 const sequelize = require("./config/sequelize.js");
 
-const port = 5001; // Port running
+const port = 5000; // Port running
 
 //Body parser logic
 app.use(express.json());

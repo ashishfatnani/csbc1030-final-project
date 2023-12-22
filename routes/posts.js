@@ -14,6 +14,9 @@ router
   .get(authenticateMiddleware, getAllPosts)
   .post(authenticateMiddleware, createPost);
 
-router.route("/:id").get(getSinglePost).put(updatePost);
+router
+  .route("/:id")
+  .get(authenticateMiddleware, getSinglePost)
+  .put(authenticateMiddleware, updatePost);
 
 module.exports = router;

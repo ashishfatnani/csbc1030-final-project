@@ -73,7 +73,6 @@ exports.registerUsers = async (req, res) => {
       message: "Successfully returned the requested users data",
     });
   } catch (error) {
-    console.log("✌️error --->", error);
     return res.status(400).json({
       success: false,
       message: "Something went wrong!",

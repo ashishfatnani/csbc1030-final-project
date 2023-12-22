@@ -10,10 +10,6 @@ const Comment = sequelize.define(
       primaryKey: true,
       autoIncrement: true,
     },
-    postId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -25,6 +21,10 @@ const Comment = sequelize.define(
         isEmail: true,
       },
     },
+    postId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     body: {
       type: DataTypes.TEXT,
       allowNull: false,
@@ -35,7 +35,4 @@ const Comment = sequelize.define(
   }
 );
 
-// Comment.belongsTo(Post, { foreignKey: "postId" });
-
 module.exports = Comment;
-// const Post = require("./Posts");

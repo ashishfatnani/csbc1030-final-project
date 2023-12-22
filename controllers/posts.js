@@ -60,11 +60,18 @@ exports.getSinglePost = async (req, res) => {
   const postId = req.params.id;
   try {
     const postData = await Post.findOne({ where: { id: postId, userId } });
-    return res.status(200).json({
-      success: true,
-      data: postData,
-      message: "Successfully returned post",
-    });
+    if (postData) {
+      return res.status(200).json({
+        success: true,
+        data: postData,
+        message: "Successfully returned post",
+      });
+    } else {
+      return res.status(400).json({
+        success: false,
+        message: "Post not found",
+      });
+    }
   } catch (error) {
     return res.status(400).json({
       success: false,
@@ -81,10 +88,12 @@ exports.updatePost = async (req, res) => {
     const postData = await Post.findOne({ where: { id: postId, userId } });
 
     if (postData) {
-      const updateData = await Post.update({ body });
+      const updateData = await Post.update(
+        { body },
+        { where: { id: postId, userId } }
+      );
       return res.status(200).json({
         success: true,
-        data: updateData,
         message: "Successfully updated Post",
       });
     } else {

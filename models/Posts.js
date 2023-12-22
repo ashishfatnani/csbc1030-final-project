@@ -29,5 +29,3 @@ const Post = sequelize.define(
 );
 
 module.exports = Post;
-
-// const Comment = require("./Comments");
