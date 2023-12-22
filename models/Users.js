@@ -1,6 +1,7 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/sequelize"); // Make sure to replace this with your Sequelize instance
-const Post = require("./Posts");
+// const Post = require("./Posts");
+// const Comment = require("./Comments");
 const User = sequelize.define(
   "User",
   {
@@ -13,7 +14,7 @@ const User = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    username: {
+    userName: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
@@ -26,8 +27,12 @@ const User = sequelize.define(
         isEmail: true,
       },
     },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     address: {
-      type: DataTypes.JSONB,
+      type: DataTypes.JSON,
       allowNull: false,
     },
     phone: {
@@ -38,15 +43,17 @@ const User = sequelize.define(
       type: DataTypes.STRING,
     },
     company: {
-      type: DataTypes.JSONB,
+      type: DataTypes.JSON,
     },
   },
   {
     timestamps: true,
   }
 );
-User.hasMany(Post, { foreignKey: "userId" });
+// User.hasMany(Post, { foreignKey: "userId" });
 
-User.sync();
+// User.hasMany(Post, { foreignKey: "userId" }); // A user can have multiple posts
+// User.hasMany(Comment, { foreignKey: "userId" }); // A user can have multiple comments
+// User.sync();
 
 module.exports = User;

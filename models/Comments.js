@@ -1,7 +1,6 @@
 // models/comment.js
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/sequelize");
-const Post = require("./Posts");
 
 const Comment = sequelize.define(
   "Comment",
@@ -10,6 +9,10 @@ const Comment = sequelize.define(
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
+    },
+    postId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
     },
     name: {
       type: DataTypes.STRING,
@@ -32,8 +35,9 @@ const Comment = sequelize.define(
   }
 );
 
-Comment.belongsTo(Post, { foreignKey: "postId" });
+// Comment.belongsTo(Post, { foreignKey: "postId" });
 
-Comment.sync();
+// Comment.sync();
 
 module.exports = Comment;
+// const Post = require("./Posts");

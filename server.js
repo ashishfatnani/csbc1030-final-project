@@ -1,7 +1,9 @@
 const express = require("express");
 const app = express();
-// const users = require("./routes/users.js");
-// const auth = require("./routes/auth.js");
+const users = require("./routes/users.js");
+const posts = require("./routes/posts.js");
+const comments = require("./routes/comments.js");
+const auth = require("./routes/auth.js");
 const sequelize = require("./config/sequelize.js");
 
 const port = 5000; // Port running
@@ -10,7 +12,9 @@ const port = 5000; // Port running
 app.use(express.json());
 
 // Mount routers
-// app.use("/users", users, auth);
+app.use("/", auth);
+app.use("/users", users);
+app.use("/posts", posts, comments);
 
 //code to connect with sequelize
 const startServer = async () => {

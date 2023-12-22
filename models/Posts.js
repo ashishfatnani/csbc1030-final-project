@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
-const { sequelize } = require("../config/sequelize");
+const sequelize = require("../config/sequelize");
 const User = require("./Users");
-const Comment = require("./Comments");
+// const Comment = require("./Comments");
 const Post = sequelize.define(
   "Post",
   {
@@ -28,13 +28,6 @@ const Post = sequelize.define(
   }
 );
 
-// Define the association between User and Post
-
-Post.belongsTo(User, { foreignKey: "userId" });
-
-Post.hasMany(Comment, { foreignKey: "postId" });
-
-// Synchronize the models with the database
-Post.sync();
-
 module.exports = Post;
+
+// const Comment = require("./Comments");
