@@ -99,7 +99,9 @@ exports.deleteComment = async (req, res) => {
       where: { id: commentId, email, postId },
     });
     if (comment) {
-      const updateData = await Comment.destroy();
+      const updateData = await Comment.destroy({
+        where: { id: commentId, email, postId },
+      });
       return res.status(200).json({
         success: true,
         message: "Successfully Deleted Comment",
