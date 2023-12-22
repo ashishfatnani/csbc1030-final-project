@@ -3,7 +3,7 @@ const asyncHandler = require("./asyc");
 const JWT_SECRET = "someRandomToken";
 
 // Protect routes
-exports.authenticateMiddleware = asyncHandler(async (req, res, next) => {
+const authenticateMiddleware = asyncHandler(async (req, res, next) => {
   let token;
   if (
     req.headers.authorization &&
@@ -33,3 +33,5 @@ exports.authenticateMiddleware = asyncHandler(async (req, res, next) => {
     });
   }
 });
+
+module.exports = authenticateMiddleware;

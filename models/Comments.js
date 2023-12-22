@@ -37,7 +37,5 @@ const Comment = sequelize.define(
 
 // Comment.belongsTo(Post, { foreignKey: "postId" });
 
-// Comment.sync();
-
 module.exports = Comment;
 // const Post = require("./Posts");

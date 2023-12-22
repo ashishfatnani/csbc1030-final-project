@@ -1,5 +1,5 @@
 const express = require("express");
-// const authenticateMiddleware = require("../middleware/auth");
+const authenticateMiddleware = require("../middleware/auth");
 
 const {
   createPost,
@@ -9,7 +9,10 @@ const {
 } = require("../controllers/posts");
 
 const router = express.Router({ mergeParams: true });
-router.route("/").get(getAllPosts).post(createPost);
+router
+  .route("/")
+  .get(authenticateMiddleware, getAllPosts)
+  .post(authenticateMiddleware, createPost);
 
 router.route("/:id").get(getSinglePost).put(updatePost);
 

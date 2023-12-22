@@ -4,9 +4,10 @@ const users = require("./routes/users.js");
 const posts = require("./routes/posts.js");
 const comments = require("./routes/comments.js");
 const auth = require("./routes/auth.js");
+
 const sequelize = require("./config/sequelize.js");
 
-const port = 5000; // Port running
+const port = 5001; // Port running
 
 //Body parser logic
 app.use(express.json());
