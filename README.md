@@ -68,8 +68,45 @@ npm install
 Add your Mysql databases creds in config/sequelize.js file
 
 # Run the application
- 1. Nodemon -> npm run start
+ 1. Nodemon -> npm run start or
  2. node server.js
+
+# Run test cases
+ 1. Unit test -> npm run unit-test
+ 2. End-to-End -> npm run end-test
+
+
+# Run from Database
+CREATE DATABASE csbc1030finalproject;
+USE csbc1030finalproject;
+
+# Create Tables
+CREATE TABLE Users (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Posts (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  userId INT,
+  title VARCHAR(255) NOT NULL,
+  body TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE Comments (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  postId INT,
+  name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  body TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 
 # Contact Me
  feel free to contact at ashishfatnani3@gmail.com for any doubts or issues

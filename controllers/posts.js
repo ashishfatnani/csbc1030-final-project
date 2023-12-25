@@ -55,11 +55,15 @@ exports.getAllPosts = async (req, res) => {
   }
 };
 
+/*  @desc -> Get my single post 
+    @route -> GET /posts/:postId
+*/
 exports.getSinglePost = async (req, res) => {
-  const userId = req.user.id;
-  const postId = req.params.id;
+  const userId = parseInt(req.user.id);
+  const postId = parseInt(req.params.id);
   try {
-    const postData = await Post.findOne({ where: { id: postId, userId } });
+    const postData = await Post.findOne({ where: { id: postId } });
+
     if (postData) {
       return res.status(200).json({
         success: true,
@@ -80,9 +84,13 @@ exports.getSinglePost = async (req, res) => {
   }
 };
 
+/*  @desc -> Update my single post 
+    @route -> Update /posts/:postId
+*/
 exports.updatePost = async (req, res) => {
-  const userId = req.user.id;
-  const postId = req.params.id;
+  const userId = parseInt(req.user.id);
+  console.log("✌️userId --->", userId);
+  const postId = parseInt(req.params.id);
   const { body } = req.body;
   try {
     const postData = await Post.findOne({ where: { id: postId, userId } });

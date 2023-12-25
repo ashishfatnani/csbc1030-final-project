@@ -1,6 +1,9 @@
 const Comment = require("../models/Comments");
 const User = require("../models/Users");
 
+/*  @desc -> Get All comments for a post
+    @route -> GET /posts/:postId/comments
+*/
 exports.getAllComments = async (req, res) => {
   try {
     const postId = parseInt(req.params.postId);
@@ -9,11 +12,18 @@ exports.getAllComments = async (req, res) => {
       where: { postId: postId },
     });
 
-    return res.status(200).json({
-      success: true,
-      data: commentsData,
-      message: "Successfully returned all Comments for this Post",
-    });
+    if (commentsData.length) {
+      return res.status(200).json({
+        success: true,
+        data: commentsData,
+        message: "Successfully returned all Comments for this Post",
+      });
+    } else {
+      return res.status(200).json({
+        success: true,
+        message: "No Comments for this Post",
+      });
+    }
   } catch (error) {
     return res.status(400).json({
       success: false,
@@ -22,6 +32,9 @@ exports.getAllComments = async (req, res) => {
   }
 };
 
+/*  @desc -> Create a comment under a post 
+    @route -> GET /posts/:postId/comments
+*/
 exports.createComment = async (req, res) => {
   try {
     const postId = parseInt(req.params.postId);
@@ -55,6 +68,9 @@ exports.createComment = async (req, res) => {
   }
 };
 
+/*  @desc -> Update a comment under a post 
+    @route -> PUT /posts/:postId/comments
+*/
 exports.updateComment = async (req, res) => {
   try {
     const postId = parseInt(req.params.postId);
@@ -89,6 +105,9 @@ exports.updateComment = async (req, res) => {
   }
 };
 
+/*  @desc -> Delete a comment under a post 
+    @route -> DELETE /posts/:postId/comments
+*/
 exports.deleteComment = async (req, res) => {
   try {
     const postId = parseInt(req.params.postId);
